@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import habitReducer from "./habitSlice";
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    habits: habitReducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
