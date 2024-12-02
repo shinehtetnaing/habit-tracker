@@ -2,11 +2,13 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Box, Button, Grid, Paper, Typography } from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../store/store";
+import { removeHabit, toggleHabit } from "../store/habitSlice";
 
 const HabitList: React.FC = () => {
   const { habits } = useSelector((state: RootState) => state.habits);
+  const dispatch = useDispatch<AppDispatch>();
 
   const today = new Date().toISOString().split("T")[0];
 
@@ -30,9 +32,9 @@ const HabitList: React.FC = () => {
                   color={
                     habit.completedDates.includes(today) ? "success" : "primary"
                   }
-                  //   onClick={() =>
-                  //     dispatch(toggleHabit({ id: habit.id, date: today }))
-                  //   }
+                  onClick={() =>
+                    dispatch(toggleHabit({ id: habit.id, date: today }))
+                  }
                   startIcon={<CheckCircleIcon />}
                 >
                   {habit.completedDates.includes(today)
@@ -42,7 +44,7 @@ const HabitList: React.FC = () => {
                 <Button
                   variant="outlined"
                   color="error"
-                  //   onClick={() => dispatch(removeHabit(habit.id))}
+                  onClick={() => dispatch(removeHabit(habit.id))}
                   startIcon={<DeleteIcon />}
                 >
                   Remove
