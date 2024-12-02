@@ -1,9 +1,10 @@
 import { Box, Container, Typography } from "@mui/material";
 import { Provider } from "react-redux";
 import "./App.css";
-import AddHabitForm from "./components/addHabitForm";
 import { store } from "./store/store";
 import HabitList from "./components/HabitList";
+import HabitStats from "./components/HabitStats";
+import AddHabitForm from "./components/AddHabitForm";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           </Typography>
           <AddHabitForm />
           <HabitList />
+          <HabitStats />
         </Box>
       </Container>
     </Provider>
